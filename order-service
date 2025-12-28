@@ -1,0 +1,9 @@
+server:
+  port: 8082
+mes-config-ms:
+  [cite_start]commandes-last: 10
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/order_db
+    username: postgres
+    password: 12345678
