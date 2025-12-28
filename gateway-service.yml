@@ -9,15 +9,26 @@ spring:
           enabled: true
           lower-case-service-id: true
       routes:
-        - id: product-route
+        # Route Publique pour se connecter
+        - id: auth-service
+          uri: lb://auth-service
+          predicates:
+            - Path=/auth/**
+
+        # Routes Protégées
+        - id: product-service
           uri: lb://product-service
           predicates:
             - Path=/api/products/**
-        - id: order-route
+          filters:
+            - JwtAuthenticationFilter
+
+        - id: order-service
           uri: lb://order-service
           predicates:
             - Path=/api/orders/**
-
+          filters:
+            - JwtAuthenticationFilter
 eureka:
   client:
     service-url:
