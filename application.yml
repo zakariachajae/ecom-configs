@@ -1,4 +1,4 @@
 # Configuration globale pour tous les services
 eureka:
   instance:
-    hostname: localhost
+    hostname: http://discovery-service:8761/eureka/
