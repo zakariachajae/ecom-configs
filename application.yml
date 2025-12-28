@@ -1,0 +1,4 @@
+# Configuration globale pour tous les services
+eureka:
+  instance:
+    hostname: localhost
