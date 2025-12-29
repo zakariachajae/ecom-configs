@@ -1,4 +1,4 @@
 # Configuration globale pour tous les services
 eureka:
   instance:
-    hostname: http://localhost:8761/eureka/
+    hostname: localhost
