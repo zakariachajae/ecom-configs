@@ -14,8 +14,12 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
 
       properties:
-        spring.json.trusted.packages: com.example.NotificationService
+        # This tells Kafka: "I don't care what the sender called the class"
         spring.json.use.type.headers: false
+        # This tells Kafka: "Trust all data coming in"
+        spring.json.trusted.packages: "*"
+        # This maps the incoming data specifically to YOUR DTO
+        spring.json.value.default.type: com.example.NotificationService.dto.OrderCreatedEvent
 
     listener:
       ack-mode: record
