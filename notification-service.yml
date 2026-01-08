@@ -20,6 +20,18 @@ spring:
     listener:
       ack-mode: record
 
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: zakariachajae@gmail.com
+    password: kxwxktzstbunorjz
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
 eureka:
   client:
     service-url:
