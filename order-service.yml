@@ -21,3 +21,12 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+
+spring: 
+  kafka:
+    producer:
+      acks: all
+      retries: 10
+      properties:
+        enable:
+          idempotence: true
