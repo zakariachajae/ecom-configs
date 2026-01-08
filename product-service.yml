@@ -26,7 +26,7 @@ resilience4j:
           - org.springframework.web.client.HttpClientErrorException
           - org.springframework.web.client.HttpServerErrorException
         ignore-exceptions:
-          - com.example.ProductNotFoundException
+          - com.example.productService.exception.ProductNotFoundException
   retry:
     instances:
       productService:
