@@ -5,10 +5,15 @@ mes-config-ms:
   commandes-last: 10
 
 spring:
+  application:
+    name: order-service
+
   datasource:
     url: jdbc:postgresql://localhost:5432/order_db
     username: postgres
     password: 12345678
+    driver-class-name: org.postgresql.Driver   # explicit, safe for prod
+
   jpa:
     hibernate:
       ddl-auto: update
@@ -16,6 +21,7 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+
   kafka:
     bootstrap-servers: localhost:9092
 
@@ -24,7 +30,6 @@ spring:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       acks: all
       retries: 10
-
       properties:
         enable.idempotence: true
         linger.ms: 5
