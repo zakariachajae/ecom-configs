@@ -1,7 +1,16 @@
 server:
-  port: 8080
+  port: 8097
 
 spring:
+  application:
+    name: gateway-service
+    
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/ecommerce-realm
+
   cloud:
     gateway:
       discovery:
@@ -9,27 +18,16 @@ spring:
           enabled: true
           lower-case-service-id: true
       routes:
-        # Route Publique pour se connecter
-        - id: auth-service
-          uri: lb://auth-service
-          predicates:
-            - Path=/auth/**
-
-        # Routes Protégées
         - id: product-service
           uri: lb://product-service
           predicates:
             - Path=/api/products/**
           filters:
-            - JwtAuthenticationFilter
+            - TokenRelay
 
         - id: order-service
           uri: lb://order-service
           predicates:
             - Path=/api/orders/**
           filters:
-            - JwtAuthenticationFilter
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
+            - TokenRelay
